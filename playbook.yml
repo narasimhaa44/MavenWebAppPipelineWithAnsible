@@ -1,17 +1,33 @@
+# ---
+# - name: Deploy to Tomcat
+#   hosts: web
+#   become: yes
+#   tasks: 
+#     - name: Copy WAR file to Tomcat
+#       copy:
+#         src: "/var/snap/jenkins/5013/workspace/MavenWebAppPipelineWithAnsible/target/MavneWebAppPipelineWithAnsible.war"
+#         dest: "opt/tomcat/webapps/MavenWebAppPipelineWithAnsible.war"
+#         remote_src: no
+        
+#     - name: Restart Tomcat
+#       systemd:
+#       	name: tomcat
+#       	state: restarted
+    
+
 ---
 - name: Deploy to Tomcat
   hosts: web
   become: yes
-  tasks: 
+
+  tasks:
     - name: Copy WAR file to Tomcat
       copy:
-        src: "/var/snap/jenkins/5013/workspace/MavenWebAppPipelineWithAnsible/target/MavneWebAppPipelineWithAnsible.war"
-        dest: "opt/tomcat/webapps/MavenWebAppPipelineWithAnsible.war"
+        src: "/var/snap/jenkins/5013/workspace/MavenWebAppPipelineWithAnsible/target/MavenWebAppPipelineWithAnsible.war"
+        dest: "/opt/tomcat/webapps/MavenWebAppPipelineWithAnsible.war"
         remote_src: no
-        
+
     - name: Restart Tomcat
       systemd:
-      	name: tomcat
-      	state: restarted
-    
-
+        name: tomcat
+        state: restarted
